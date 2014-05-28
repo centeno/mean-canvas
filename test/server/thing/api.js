@@ -1,9 +1,8 @@
-/*
 'use strict';
 
 var should = require('should'),
     //app = require('../../../server'),
-    app = require('../../server'),
+    app = require('../../../lib/server'),
     request = require('supertest');
 
 describe('GET /api/awesomeThings', function() {
@@ -20,4 +19,3 @@ describe('GET /api/awesomeThings', function() {
       });
   });
 });
-*/

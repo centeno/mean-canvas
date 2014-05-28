@@ -1,17 +1,32 @@
+/*
 'use strict';
 
 var 
     requireHelper = require('../require_helper'),
-    app = requireHelper('server.js'),
+    //app = requireHelper('server.js'),
+    // app = require('../../server'),
+    app = require('../../../lib/server'),
     mongoose = require('mongoose'),    
     User = mongoose.model('User'),
     //request = require('superagent'),
     request = require('supertest'),
     should = require('should');
 
-var server = request.agent('http://localhost:9000');
+//var server = request.agent('http://localhost:9000');
+describe('GET /api/canvas', function(){
+  it('should not return canvases for anonymous users', function(done){
+    request(app)
+      .get('/api/canvas')
+      .expect(401)
+      .end(function(err, res) {
+        if (err) return done(err);
+        done();
+      })
+  });
+});
 
 describe('GET /api/canvas', function(){
+    //debugger;
     it('should not return a canvas for an anonymous user', function(done){
       server
           .get('/api/canvas')                       
@@ -21,7 +36,6 @@ describe('GET /api/canvas', function(){
           });
       });
 
-    /*
     //it('login', loginUser());
     it('login', loginUser({ email: 'test@test.com', password: 'test' }));
     it('should return a canvas for a logged user', function(done){
@@ -34,7 +48,6 @@ describe('GET /api/canvas', function(){
               done()
           });
       });
-    */
 });
 
 
@@ -53,3 +66,4 @@ function loginUser(usr) {
         }
     };
 };
+*/
